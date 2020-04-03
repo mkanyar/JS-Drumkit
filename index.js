@@ -4,12 +4,22 @@ for (var i = 0; i < numberOfKeys; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function() {
     var myKey = this.innerHTML;
     makeSound(myKey);
+    buttonAnimation(myKey);
   });
 }
 //press key on the Keyboard
 document.addEventListener("keypress", function(event) {
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
+
+function buttonAnimation(key) {
+  activeButton = document.querySelector("." + key);
+  activeButton.classList.add("pressed");
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
+}
 function makeSound(key) {
   switch (key) {
     case "w":
